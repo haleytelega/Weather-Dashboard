@@ -11,11 +11,21 @@
     </head>
 
 <body>
-    <div class="col">
-        <h1>Weather Dashboard</h1>
     <header>
-
+        <div class="col">
+            <h1>Weather Dashboard</h1>
+        </div>
     </header>
+
+    <main>
+        <div class="card border-0">
+        <form class="card-body">
+            <label class="col city-search" for="city">Search for a City:</label>
+            <input name="city" id="city" type="text" autofocus="true" class="city-input rounded" />
+            <button type="submit" class="btn">Search</button>
+        </form>
+        </div>
+    </main>
 
     <script src="./assets/js/script.js"></script>
 </body>
