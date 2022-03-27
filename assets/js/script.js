@@ -1,9 +1,1 @@
-var userFormEl = document.querySelector("#user-form");
-
-var getCurrentTemp = function () {
-    var getCurrentDate = moment().format("dddd, MMMM, Do");
-    console.log(getCurrentDate);
-    document.getElementById("currentDay").innerHTML=getCurrentDate;
-};
-
-userFormEl.addEventListener("click", getCurrentTemp);
+var apiKey = fbd00966461c8849ae90f0d8b2f1332f;
