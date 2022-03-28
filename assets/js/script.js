@@ -7,7 +7,6 @@ var getCity = function () {
         if (response.ok) {
             response.json().then(function(data){
                 console.log(city.name, data)
-                console.log("is this working?");
             });
         }
     });
