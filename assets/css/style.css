@@ -48,3 +48,8 @@ h1 {
     margin-top: 10px;
     padding: 0 100px 0 70px;
 }
+
+.today, .city {
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+}

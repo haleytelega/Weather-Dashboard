@@ -1,15 +1,16 @@
 var userFormEl = document.querySelector("#city-form");
 var cityContainerEl = document.querySelector("#city-container");
 var cityInputEl = document.querySelector("#city");
+var searchTermEl = document.querySelector(".search-city");
 var apiKey = "fbd00966461c8849ae90f0d8b2f1332f";
 
 function getCity (city) {
     // console.log(city);
-    var apiUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=Metric&appid=" + apiKey;
+    var apiUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&temp=Metric&units=Metric&appid=" + apiKey;
     fetch(apiUrl).then(function(response) {
         if (response.ok) {
             response.json().then(function(data){
-                displayCities(city)
+                displayCities(city, data)
                 console.log(city, data)
             });
         }
@@ -17,14 +18,15 @@ function getCity (city) {
 };
 
 function displayCities (city) {
-    if(city == "Windsor") {
-        cityContainerEl.innerHTML = "Temp: " + temp;
-    }
-
+    if(city != '') {
+    cityContainerEl.textContent = "";
     var cityEl = document.createElement("a");
+    cityContainerEl.innerHTML = city;
+
 
     cityContainerEl.appendChild(cityEl);
-}
+    }
+};
 
 
 userFormEl.addEventListener("submit", function(e) {
