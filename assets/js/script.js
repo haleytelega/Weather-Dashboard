@@ -1,7 +1,6 @@
 var userFormEl = document.querySelector("#city-form");
 var cityContainerEl = document.querySelector("#city-container");
 var cityInputEl = document.querySelector("#city");
-var searchTermEl = document.querySelector(".search-city");
 var apiKey = "fbd00966461c8849ae90f0d8b2f1332f";
 
 function getCity (city) {
@@ -11,25 +10,36 @@ function getCity (city) {
         if (response.ok) {
             response.json().then(function(data){
                 displayCities(city, data)
-                console.log(city, data)
             });
         }
     });
 };
 
-function displayCities (city) {
-    // var currentCity = city.current.temp;
+function displayCities (city, data) {
+    var cityTemp = data.main.temp;
+    var cityHumitity = data.main.humidity;
+    var cityWind = data.wind.speed;
 
     if(city != '') {
     cityContainerEl.textContent = "";
-    cityContainerEl.innerHTML = city;
+    cityContainerEl.textContent = city;
 
     var cityEl = document.createElement("a");
 
-    var cityNameEl = document.createElement("span");
-    // cityNameEl.textContent = currentCity
+    var cityTempEl = document.createElement("p");
+    cityTempEl.textContent = "Tempature: " + cityTemp + "°C";
 
-    cityEl.appendChild(cityNameEl);
+    var cityHumitityEl = document.createElement("p");
+    cityHumitityEl.textContent = "Humitity: " + cityHumitity + "%";
+
+    var cityWindEl = document.createElement("p");
+    cityWindEl.textContent = "Wind: " + cityWind + "MPH";
+
+    cityEl.appendChild(cityTempEl);
+
+    cityEl.appendChild(cityHumitityEl);
+
+    cityEl.appendChild(cityWindEl);
 
     cityContainerEl.appendChild(cityEl);
     }
