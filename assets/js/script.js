@@ -9,17 +9,16 @@ function getCity (city) {
     fetch(apiUrl).then(function(response) {
         if (response.ok) {
             response.json().then(function(data){
-                displayCities(city, data)
+                displayCities(city)
                 console.log(city, data)
             });
         }
     });
 };
 
-function displayCities () {
+function displayCities (city) {
     if(city == "Windsor") {
-        console.log("random")
-        cityContainerEl.textContent = "this is working";
+        cityContainerEl.innerHTML = "Temp: " + temp;
     }
 
     var cityEl = document.createElement("a");
