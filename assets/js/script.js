@@ -18,11 +18,18 @@ function getCity (city) {
 };
 
 function displayCities (city) {
+    // var currentCity = city.current.temp;
+
     if(city != '') {
     cityContainerEl.textContent = "";
-    var cityEl = document.createElement("a");
     cityContainerEl.innerHTML = city;
 
+    var cityEl = document.createElement("a");
+
+    var cityNameEl = document.createElement("span");
+    // cityNameEl.textContent = currentCity
+
+    cityEl.appendChild(cityNameEl);
 
     cityContainerEl.appendChild(cityEl);
     }
