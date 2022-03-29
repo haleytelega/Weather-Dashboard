@@ -9,7 +9,7 @@ function getCity (city) {
     fetch(apiUrl).then(function(response) {
         if (response.ok) {
             response.json().then(function(data){
-                displayCities(city)
+                displayCities(city, data)
                 console.log(city, data)
             });
         }
@@ -18,8 +18,13 @@ function getCity (city) {
 
 function displayCities () {
     if(city == "Windsor") {
+        console.log("random")
         cityContainerEl.textContent = "this is working";
     }
+
+    var cityEl = document.createElement("a");
+
+    cityContainerEl.appendChild(cityEl);
 }
 
 
