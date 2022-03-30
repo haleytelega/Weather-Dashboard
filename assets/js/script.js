@@ -12,19 +12,32 @@ function getCity (city) {
                 displayCities(city, data)
             });
         }
-    });
-};
+
+    var uviUrl = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&uvi=" + uvi + "&appid=" + apiKey;
+        fetch(uviUrl).then(function(uviResponse) {
+            if (uviResponse.ok) {
+                uviResponse.json().then(function(data){
+                    console.log(data);
+            });
+        }
+    }
+}
 
 function displayCities (city, data) {
     var cityTemp = data.main.temp;
     var cityHumitity = data.main.humidity;
     var cityWind = data.wind.speed;
+    console.log(data)
 
     if(city != '') {
     cityContainerEl.textContent = "";
-    cityContainerEl.textContent = city;
+    // cityContainerEl.textContent = city;
 
     var cityEl = document.createElement("a");
+
+    var cityNameEl = document.createElement("p");
+    cityContainerEl.textContent = "Current Day's weather for: " + city;
+
 
     var cityTempEl = document.createElement("p");
     cityTempEl.textContent = "Tempature: " + cityTemp + "°C";
