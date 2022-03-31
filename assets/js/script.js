@@ -17,10 +17,6 @@ function getCity (city) {
                 getUVI(cityLat, cityLon);
                 console.log(uvi);
             })
-            .then(function(data){
-                console.log(data);
-                displayCities(city, data);
-            });
         }
         });
 };
@@ -28,58 +24,57 @@ function getCity (city) {
 function getUVI (lat, lon) {
         var uviUrl = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&appid=" + apiKey;
         fetch(uviUrl).then(function(response) {
+            console.log(response);
             if (response.ok) {
                 response.json().then(function(data){
-                    console.log(data);
-                    var uvi = data.current.uvi;
-                    displayCities()
-            });
-        }
-    });
+                    var cityTemp = data.main.temp;
+                    var cityHumitity = data.main.humidity;
+                    var cityWind = data.wind.speed;
+                    var cityLat = data.coord.lat;
+                    var cityLon = data.coord.lon;
+                    var uvIndex = data.current.uvi;
+                    var uvi = getUVI(cityLat, cityLon, uvIndex);
+                
+                    if(city != '') {
+                    cityContainerEl.textContent = "";
+                
+                    var cityEl = document.createElement("a");
+                
+                    var cityNameEl = document.createElement("p");
+                    cityContainerEl.textContent = "Current Day's weather for: " + city;
+                
+                
+                    var cityTempEl = document.createElement("p");
+                    cityTempEl.textContent = "Tempature: " + cityTemp + "°C";
+                
+                    var cityHumitityEl = document.createElement("p");
+                    cityHumitityEl.textContent = "Humitity: " + cityHumitity + "%";
+                
+                    var cityWindEl = document.createElement("p");
+                    cityWindEl.textContent = "Wind: " + cityWind + "MPH";
+                
+                    var uviEl = document.createElement("p");
+                    uviEl.textContent = "UV: " + uvi + ".";
+                
+                    cityEl.appendChild(cityTempEl);
+                
+                    cityEl.appendChild(cityHumitityEl);
+                
+                    cityEl.appendChild(cityWindEl);
+                    
+                    cityEl.appendChild(uviEl);
+                
+                    cityContainerEl.appendChild(cityEl);
+            };
+        });
+    };
+});
 }
 
 
-function displayCities (city, data) {
-    var cityTemp = data.main.temp;
-    var cityHumitity = data.main.humidity;
-    var cityWind = data.wind.speed;
-    var cityLat = data.coord.lat;
-    var cityLon = data.coord.lon;
-    var uvIndex = data.current.uvi;
-    var uvi = getUVI(cityLat, cityLon, uvIndex);
 
-    if(city != '') {
-    cityContainerEl.textContent = "";
-
-    var cityEl = document.createElement("a");
-
-    var cityNameEl = document.createElement("p");
-    cityContainerEl.textContent = "Current Day's weather for: " + city;
-
-
-    var cityTempEl = document.createElement("p");
-    cityTempEl.textContent = "Tempature: " + cityTemp + "°C";
-
-    var cityHumitityEl = document.createElement("p");
-    cityHumitityEl.textContent = "Humitity: " + cityHumitity + "%";
-
-    var cityWindEl = document.createElement("p");
-    cityWindEl.textContent = "Wind: " + cityWind + "MPH";
-
-    var uviEl = document.createElement("p");
-    uviEl.textContent = "UV: " + uvi + ".";
-
-    cityEl.appendChild(cityTempEl);
-
-    cityEl.appendChild(cityHumitityEl);
-
-    cityEl.appendChild(cityWindEl);
-    
-    cityEl.appendChild(uviEl);
-
-    cityContainerEl.appendChild(cityEl);
-    }
-};
+// function displayCities (city, data) {
+// };
 
 
 userFormEl.addEventListener("submit", function(e) {
