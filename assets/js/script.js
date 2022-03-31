@@ -9,14 +9,14 @@ function getCity (city) {
     fetch(apiUrl).then(function(response) {
         if (response.ok) {
             response.json().then(function(data){
-                displayCities(city, data, uvi)
+                displayCities(city, data)
             });
         }
         });
 };
 
-function getUVI (uvi) {
-        var uviUrl = "https://api.openweathermap.org/data/2.5/onecall?uvi=" + uvi + "&appid=" + apiKey;
+function getUVI (lat, lon, uvi) {
+        var uviUrl = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&uvi=" + uvi + "&appid=" + apiKey;
         fetch(uviUrl).then(function(response) {
             if (response.ok) {
                 response.json().then(function(data){
@@ -27,20 +27,18 @@ function getUVI (uvi) {
 }
 
 
-function displayCities (city, data, uvi) {
+function displayCities (city, data, lat, lon, uvi) {
     var cityTemp = data.main.temp;
     var cityHumitity = data.main.humidity;
     var cityWind = data.wind.speed;
     var cityLat = data.coord.lat;
     var cityLon = data.coord.lon;
-    var cityUV = data.current.uvi;
+    var uvi = getUVI(cityLat, cityLon);
 
     if(city != '') {
     cityContainerEl.textContent = "";
-    // cityContainerEl.textContent = city;
 
     var cityEl = document.createElement("a");
-    cityEl.setAttribute("href", "onecall?uvi=" + uvi + "&appid=" + apiKey);
 
     var cityNameEl = document.createElement("p");
     cityContainerEl.textContent = "Current Day's weather for: " + city;
@@ -55,8 +53,8 @@ function displayCities (city, data, uvi) {
     var cityWindEl = document.createElement("p");
     cityWindEl.textContent = "Wind: " + cityWind + "MPH";
 
-    var cityUviEl = document.createElement("p");
-    cityUviEl.textContent = "UV: " + cityUV + ".";
+    var uviEl = document.createElement("p");
+    uviEl.textContent = "UV: " + uvi + ".";
 
     cityEl.appendChild(cityTempEl);
 
@@ -64,7 +62,7 @@ function displayCities (city, data, uvi) {
 
     cityEl.appendChild(cityWindEl);
     
-    cityEl.appendChild(cityUviEl);
+    cityEl.appendChild(uviEl);
 
     cityContainerEl.appendChild(cityEl);
     }
