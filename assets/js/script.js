@@ -8,19 +8,31 @@ function getCity (city) {
     var apiUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&temp=Metric&units=Metric&appid=" + apiKey;
     fetch(apiUrl).then(function(response) {
         if (response.ok) {
-            response.json().then(function(data){
-                displayCities(city, data, uvi)
+            response.json()
+            .then(function(data){
+                // displayCities(city, data, uvi)
+                console.log(data);
+                var cityLat = data.coord.lat;
+                var cityLon = data.coord.lon;
+                getUVI(cityLat, cityLon);
+                console.log(uvi);
+            })
+            .then(function(data){
+                console.log(data);
+                displayCities(city, data);
             });
         }
         });
 };
 
-function getUVI (lat, lon, uvi) {
-        var uviUrl = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&uvi=" + uvi + "&appid=" + apiKey;
+function getUVI (lat, lon) {
+        var uviUrl = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&appid=" + apiKey;
         fetch(uviUrl).then(function(response) {
             if (response.ok) {
                 response.json().then(function(data){
                     console.log(data);
+                    var uvi = data.current.uvi;
+                    displayCities()
             });
         }
     });
