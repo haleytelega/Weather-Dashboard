@@ -9,7 +9,7 @@ function getCity (city) {
     fetch(apiUrl).then(function(response) {
         if (response.ok) {
             response.json().then(function(data){
-                displayCities(city, data)
+                displayCities(city, data, uvi)
             });
         }
         });
@@ -27,13 +27,14 @@ function getUVI (lat, lon, uvi) {
 }
 
 
-function displayCities (city, data, lat, lon, uvi) {
+function displayCities (city, data) {
     var cityTemp = data.main.temp;
     var cityHumitity = data.main.humidity;
     var cityWind = data.wind.speed;
     var cityLat = data.coord.lat;
     var cityLon = data.coord.lon;
-    var uvi = getUVI(cityLat, cityLon);
+    var uvIndex = data.current.uvi;
+    var uvi = getUVI(cityLat, cityLon, uvIndex);
 
     if(city != '') {
     cityContainerEl.textContent = "";
