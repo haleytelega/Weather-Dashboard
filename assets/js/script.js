@@ -14,9 +14,7 @@ function getCity (city) {
             });
         }
         });
-};
 
-function getUVI (lat, lon) {
         var uviUrl = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&appid=" + apiKey;
         fetch(uviUrl).then(function(response) {
             if (response.ok) {
@@ -25,9 +23,7 @@ function getUVI (lat, lon) {
             });
         }
     });
-}
 
-function getWeekWeather (city) {
     var weekUrl = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&temp=Metric&units=Metric&appid=" + apiKey;
     fetch(weekUrl).then(function(response) {
         if(response.ok) {
@@ -54,7 +50,6 @@ function getWeekWeather (city) {
     });
 }
 
-getWeekWeather();
 
 function displayCities (city, data) {
     var cityTemp = data.main.temp;
@@ -63,7 +58,6 @@ function displayCities (city, data) {
     var cityLat = data.lat;
     var cityLon = data.lon;
     // var uvIndex = data.current.uvi;
-    var uvi = getUVI(cityLat, cityLon);
 
     if(city != '') {
     cityContainerEl.textContent = "";
@@ -83,8 +77,8 @@ function displayCities (city, data) {
     var cityWindEl = document.createElement("p");
     cityWindEl.textContent = "Wind: " + cityWind + "MPH";
 
-    var uviEl = document.createElement("p");
-    uviEl.textContent = "UV: " + uvi + ".";
+    // var uviEl = document.createElement("p");
+    // uviEl.textContent = "UV: " + uvIndex + ".";
 
     cityEl.appendChild(cityTempEl);
 
@@ -92,7 +86,7 @@ function displayCities (city, data) {
 
     cityEl.appendChild(cityWindEl);
     
-    cityEl.appendChild(uviEl);
+    // cityEl.appendChild(uviEl);
 
     cityContainerEl.appendChild(cityEl);
 
