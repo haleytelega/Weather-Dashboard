@@ -15,20 +15,23 @@ function getCity (city) {
         }
         });
 
-        var uviUrl = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&appid=" + apiKey;
-        fetch(uviUrl).then(function(response) {
-            if (response.ok) {
-                response.json().then(function(data){
-                    console.log(data)
-            });
-        }
-    });
-
-    var weekUrl = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&temp=Metric&units=Metric&appid=" + apiKey;
+    //     var uviUrl = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&appid=" + apiKey;
+    //     fetch(uviUrl).then(function(response) {
+    //         if (response.ok) {
+    //             response.json().then(function(data){
+    //                 console.log(data)
+    //         });
+    //     }
+    // });
+    
+    var weekUrl = "https://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&temp=Metric&units=Metric&appid=" + apiKey;
     fetch(weekUrl).then(function(response) {
         if(response.ok) {
             response.json().then(function(data) {
                 console.log(data);
+
+                var cityLat = data.coord.lat;
+                var cityLon = data.coord.lon;
 
                 // var fiveTemp = data.list.main.temp;
                 // var fiveHumidity = data.list.main.humidity;
@@ -55,8 +58,8 @@ function displayCities (city, data) {
     var cityTemp = data.main.temp;
     var cityHumitity = data.main.humidity;
     var cityWind = data.wind.speed;
-    var cityLat = data.lat;
-    var cityLon = data.lon;
+    var cityLat = data.coord.lat;
+    var cityLon = data.coord.lon;
     // var uvIndex = data.current.uvi;
 
     if(city != '') {
