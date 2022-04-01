@@ -16,7 +16,7 @@ function getCity (city) {
 };
 
 function getUVI (lat, lon) {
-        var uviUrl = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&uvi=" + uvi + "&appid=" + apiKey;
+        var uviUrl = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&appid=" + apiKey;
         fetch(uviUrl).then(function(response) {
             if (response.ok) {
                 response.json().then(function(data){
