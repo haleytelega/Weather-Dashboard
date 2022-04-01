@@ -1,6 +1,7 @@
 var userFormEl = document.querySelector("#city-form");
 var cityContainerEl = document.querySelector("#city-container");
 var cityInputEl = document.querySelector("#city");
+var fiveDayEl = document.querySelector(".five");
 var apiKey = "fbd00966461c8849ae90f0d8b2f1332f";
 
 function getCity (city) {
@@ -20,19 +21,47 @@ function getUVI (lat, lon) {
         fetch(uviUrl).then(function(response) {
             if (response.ok) {
                 response.json().then(function(data){
-                    console.log(data);
+                    console.log(data)
             });
         }
     });
 }
 
+function getWeekWeather (city) {
+    var weekUrl = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&temp=Metric&units=Metric&appid=" + apiKey;
+    fetch(weekUrl).then(function(response) {
+        if(response.ok) {
+            response.json().then(function(data) {
+                console.log(data);
+
+                // var fiveTemp = data.list.main.temp;
+                // var fiveHumidity = data.list.main.humidity;
+                // var fiveWind = data.list.wind.speed
+
+                // var fiveCity = data.city.name;
+
+                // if(city != '') {
+                //     console.log(city);
+
+                // var fiveTemp = document.createElement("p");
+                // fiveTemp.textContent = "Temp: " + fiveTemp;
+
+                //     days.appendChild(fiveTemp);
+
+                //     fiveDayEl.appendChild(days);
+            });
+        }
+    });
+}
+
+getWeekWeather();
 
 function displayCities (city, data) {
     var cityTemp = data.main.temp;
     var cityHumitity = data.main.humidity;
     var cityWind = data.wind.speed;
-    var cityLat = data.coord.lat;
-    var cityLon = data.coord.lon;
+    var cityLat = data.lat;
+    var cityLon = data.lon;
     // var uvIndex = data.current.uvi;
     var uvi = getUVI(cityLat, cityLon);
 
@@ -66,6 +95,7 @@ function displayCities (city, data) {
     cityEl.appendChild(uviEl);
 
     cityContainerEl.appendChild(cityEl);
+
     }
 };
 
