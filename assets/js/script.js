@@ -2,6 +2,7 @@ var userFormEl = document.querySelector("#city-form");
 var cityContainerEl = document.querySelector("#city-container");
 var cityInputEl = document.querySelector("#city");
 var fiveDayEl = document.querySelector(".five");
+
 var apiKey = "fbd00966461c8849ae90f0d8b2f1332f";
 
 function getCity (city) {
@@ -15,10 +16,6 @@ function getCity (city) {
                 var cityTemp = data.main.temp;
                 var cityHumitity = data.main.humidity;
                 var cityWind = data.wind.speed;
-                // var fiveTemp = data.main.temp;
-                // var fiveWind = data.wind.speed;
-                // var fiveHumidity = data.main.humidity;
-                console.log(cityTemp, cityHumitity, cityWind);
 
                 var cityTempEl = document.createElement("p");
                 cityTempEl.textContent = "Tempature: " + cityTemp + "°C";
@@ -45,7 +42,6 @@ function getCity (city) {
                             cityUvi.textContent = "UV: " + uvi;
 
                             cityEl.appendChild(cityUvi);
-                            console.log(cityEl);
 
                     });
                 }
@@ -55,21 +51,16 @@ function getCity (city) {
             if(response.ok) {
             response.json().then(function(data) {
             console.log(data);
-            for (i=0; i < 5; i++) {
-                var cityTempEl = document.createElement("p");
-                cityTempEl.textContent = "Tempature: " + cityTemp + "°C";
-            
-                var cityHumitityEl = document.createElement("p");
-                cityHumitityEl.textContent = "Humitity: " + cityHumitity + "%";
-            
-                var cityWindEl = document.createElement("p");
-                cityWindEl.textContent = "Wind: " + cityWind + "MPH";
+            for (i = 0; i < fiveDayEl.length; i++) {
+                var day = i*8
+                var temp = data.list[i].main.temp;
+                var wind = data.list[i].wind.speed;
+                var humidity = data.list[i].main.humidity;
 
-                cityEl.appendChild(cityTempEl);
+                var fiveTemp = document.createElement("p");
+                fiveTemp.textContent = "Temp: " + temp;
 
-                cityEl.appendChild(cityHumitityEl);
-            
-                cityEl.appendChild(cityWindEl);
+                fiveEl.appendChild(fiveTemp);
             }
             });
         }
@@ -90,7 +81,7 @@ function getCity (city) {
     cityContainerEl.appendChild(cityEl);
 
     var fiveEl = document.createElement("a");
-    fiveDayEl.appendChild(fiveEl);
+    fiveEl.appendChild(fiveDayEl);
     } 
     });
 }
