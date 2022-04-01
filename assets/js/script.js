@@ -49,9 +49,10 @@ function getCity (city) {
                             var uvi = data.current.uvi;
                             console.log(uvi);
                             var cityUvi = document.createElement("p");
-                            cityUvi.textContent = "UV: " + uvi + ".";
+                            cityUvi.textContent = "UV: " + uvi;
 
                             cityEl.appendChild(cityUvi);
+                var fiveUrl = ""
 
                     });
                 }
@@ -67,9 +68,10 @@ function getCity (city) {
     cityContainerEl.textContent = "";
 
     var cityEl = document.createElement("a");
-
-    var cityNameEl = document.createElement("p");
-    cityContainerEl.textContent = "Current Day's weather for: " + city;
+    
+    var getCurrentDate = moment().format("M/D/YYYY");
+    console.log(getCurrentDate);
+    cityContainerEl.textContent = city + "(" + getCurrentDate + ")";
 
     cityContainerEl.appendChild(cityEl);
     }
