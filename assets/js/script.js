@@ -12,8 +12,26 @@ function getCity (city) {
             response.json().then(function(data){
                 console.log(data)
                 let lat = data.coord.lat;
-                let lon = data.coord.lon; 
-                displayCities(city, data)
+                let lon = data.coord.lon;
+                var cityTemp = data.main.temp;
+                var cityHumitity = data.main.humidity;
+                var cityWind = data.wind.speed;
+
+                var cityTempEl = document.createElement("p");
+                cityTempEl.textContent = "Tempature: " + cityTemp + "°C";
+            
+                var cityHumitityEl = document.createElement("p");
+                cityHumitityEl.textContent = "Humitity: " + cityHumitity + "%";
+            
+                var cityWindEl = document.createElement("p");
+                cityWindEl.textContent = "Wind: " + cityWind + "MPH";
+                // displayCities(city, data)
+
+                cityEl.appendChild(cityTempEl);
+
+                cityEl.appendChild(cityHumitityEl);
+            
+                cityEl.appendChild(cityWindEl);
 
                 console.log(lat, lon )
 
@@ -28,9 +46,13 @@ function getCity (city) {
                     if (response.ok) {
                         response.json().then(function(data){
                             console.log(data)
-                            let uvi = data.current.uvi;
+                            var uvi = data.current.uvi;
                             console.log(uvi);
-                            // let cityUvi = doc
+                            var cityUvi = document.createElement("p");
+                            cityUvi.textContent = "UV: " + uvi + ".";
+
+                            cityEl.appendChild(cityUvi);
+
                     });
                 }
             });
@@ -40,14 +62,6 @@ function getCity (city) {
     });
     });
     }
-    });
-}
-
-
-function displayCities (city, data) {
-    var cityTemp = data.main.temp;
-    var cityHumitity = data.main.humidity;
-    var cityWind = data.wind.speed;
 
     if(city != '') {
     cityContainerEl.textContent = "";
@@ -57,30 +71,10 @@ function displayCities (city, data) {
     var cityNameEl = document.createElement("p");
     cityContainerEl.textContent = "Current Day's weather for: " + city;
 
-    var cityTempEl = document.createElement("p");
-    cityTempEl.textContent = "Tempature: " + cityTemp + "°C";
-
-    var cityHumitityEl = document.createElement("p");
-    cityHumitityEl.textContent = "Humitity: " + cityHumitity + "%";
-
-    var cityWindEl = document.createElement("p");
-    cityWindEl.textContent = "Wind: " + cityWind + "MPH";
-
-    // var uviEl = document.createElement("p");
-    // uviEl.textContent = "UV: " + uvi + ".";
-
-    cityEl.appendChild(cityTempEl);
-
-    cityEl.appendChild(cityHumitityEl);
-
-    cityEl.appendChild(cityWindEl);
-    
-    // cityEl.appendChild(uviEl);
-
     cityContainerEl.appendChild(cityEl);
-
     }
-};
+    });
+}
 
 
 userFormEl.addEventListener("submit", function(e) {
