@@ -30,8 +30,8 @@ function getCity (city) {
             response.json().then(function(data) {
                 console.log(data);
 
-                var cityLat = data.coord.lat;
-                var cityLon = data.coord.lon;
+                var cityLat = data.city.coord.lat;
+                var cityLon = data.city.coord.lon;
 
                 // var fiveTemp = data.list.main.temp;
                 // var fiveHumidity = data.list.main.humidity;
