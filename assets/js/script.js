@@ -10,12 +10,15 @@ function getCity (city) {
     fetch(apiUrl).then(function(response) {
         if (response.ok) {
             response.json().then(function(data){
-                console.log(data)
                 let lat = data.coord.lat;
                 let lon = data.coord.lon;
                 var cityTemp = data.main.temp;
                 var cityHumitity = data.main.humidity;
                 var cityWind = data.wind.speed;
+                // var fiveTemp = data.main.temp;
+                // var fiveWind = data.wind.speed;
+                // var fiveHumidity = data.main.humidity;
+                console.log(cityTemp, cityHumitity, cityWind);
 
                 var cityTempEl = document.createElement("p");
                 cityTempEl.textContent = "Tempature: " + cityTemp + "°C";
@@ -33,33 +36,44 @@ function getCity (city) {
             
                 cityEl.appendChild(cityWindEl);
 
-                console.log(lat, lon )
-
-                var weekUrl = "https://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&temp=Metric&units=Metric&appid=" + apiKey;
-                fetch(weekUrl).then(function(response) {
-                if(response.ok) {
-                response.json().then(function(data) {
-                console.log(data);
-
                 var uviUrl = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&appid=" + apiKey;
                 fetch(uviUrl).then(function(response) {
                     if (response.ok) {
                         response.json().then(function(data){
-                            console.log(data)
                             var uvi = data.current.uvi;
-                            console.log(uvi);
                             var cityUvi = document.createElement("p");
                             cityUvi.textContent = "UV: " + uvi;
 
                             cityEl.appendChild(cityUvi);
-                var fiveUrl = ""
+                            console.log(cityEl);
 
                     });
                 }
-            });
 
+            var weekUrl = "https://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&temp=Metric&units=Metric&appid=" + apiKey;
+            fetch(weekUrl).then(function(response) {
+            if(response.ok) {
+            response.json().then(function(data) {
+            console.log(data);
+            for (i=0; i < 5; i++) {
+                var cityTempEl = document.createElement("p");
+                cityTempEl.textContent = "Tempature: " + cityTemp + "°C";
+            
+                var cityHumitityEl = document.createElement("p");
+                cityHumitityEl.textContent = "Humitity: " + cityHumitity + "%";
+            
+                var cityWindEl = document.createElement("p");
+                cityWindEl.textContent = "Wind: " + cityWind + "MPH";
+
+                cityEl.appendChild(cityTempEl);
+
+                cityEl.appendChild(cityHumitityEl);
+            
+                cityEl.appendChild(cityWindEl);
+            }
             });
         }
+    });
     });
     });
     }
@@ -74,7 +88,10 @@ function getCity (city) {
     cityContainerEl.textContent = city + "(" + getCurrentDate + ")";
 
     cityContainerEl.appendChild(cityEl);
-    }
+
+    var fiveEl = document.createElement("a");
+    fiveDayEl.appendChild(fiveEl);
+    } 
     });
 }
 
