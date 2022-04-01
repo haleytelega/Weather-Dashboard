@@ -53,9 +53,9 @@ function getCity (city) {
             console.log(data);
             for (i = 0; i < fiveDayEl.length; i++) {
                 var day = i*8
-                var temp = data.list[i].main.temp;
-                var wind = data.list[i].wind.speed;
-                var humidity = data.list[i].main.humidity;
+                var temp = data.list[day].main.temp;
+                var wind = data.list[day].wind.speed;
+                var humidity = data.list[day].main.humidity;
 
                 var fiveTemp = document.createElement("p");
                 fiveTemp.textContent = "Temp: " + temp;
