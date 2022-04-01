@@ -46,12 +46,13 @@ function getCity (city) {
                     });
                 }
 
-            var weekUrl = "https://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&temp=Metric&units=Metric&appid=" + apiKey;
+            var weekUrl = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&temp=Metric&units=Metric&appid=" + apiKey;
             fetch(weekUrl).then(function(response) {
             if(response.ok) {
             response.json().then(function(data) {
             console.log(data);
             for (i = 0; i < fiveDayEl.length; i++) {
+                fiveDayEl.textContent = "";
                 var day = i*8
                 var temp = data.list[day].main.temp;
                 var wind = data.list[day].wind.speed;
@@ -60,7 +61,7 @@ function getCity (city) {
                 var fiveTemp = document.createElement("p");
                 fiveTemp.textContent = "Temp: " + temp;
 
-                fiveEl.appendChild(fiveTemp);
+                fiveEl[i].appendChild(fiveTemp);
             }
             });
         }
@@ -81,7 +82,7 @@ function getCity (city) {
     cityContainerEl.appendChild(cityEl);
 
     var fiveEl = document.createElement("a");
-    fiveEl.appendChild(fiveDayEl);
+    fiveDayEl.appendChild(fiveEl);
     } 
     });
 }
