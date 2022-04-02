@@ -25,9 +25,8 @@ function getCity (city) {
                 cityIcon.setAttribute = ("src", "http://openweathermap.org/img/wn/" + icon + "@2x.png");
                 console.log(icon);
 
-                var currentIcon = document.createElement("img");
-                currentIcon.innerHTML = icon;
-                cityEl.appendChild(currentIcon);
+                var currentIcon = document.getElementById("#city-container");
+                currentIcon.append(`<img src="https://openweathermap.org/img/wn/${icon}@2x.png">`);
 
                 var cityTempEl = document.createElement("p");
                 cityTempEl.textContent = "Tempature: " + cityTemp + "°C";
