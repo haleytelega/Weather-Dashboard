@@ -22,11 +22,14 @@ function getCity (city) {
                 var cityHumitity = data.main.humidity;
                 var cityWind = data.wind.speed;
                 var icon = data.weather[0].icon;
-                cityIcon.setAttribute = ("src", "http://openweathermap.org/img/wn/" + icon + "@2x.png");
+                cityIcon.setAttribute = ("src", "https://openweathermap.org/img/wn/" + icon + "@2x.png");
                 console.log(icon);
 
-                var currentIcon = document.getElementById("#city-container");
-                currentIcon.append(`<img src="https://openweathermap.org/img/wn/${icon}@2x.png">`);
+
+                var currentIcon = document.getElementById('city-container');
+                var imgEl = document.createElement('img');
+                imgEl.src = `<img src="https://openweathermap.org/img/wn/${icon}@2x.png">`;
+                currentIcon.append(imgEl);
 
                 var cityTempEl = document.createElement("p");
                 cityTempEl.textContent = "Tempature: " + cityTemp + "°C";
@@ -54,11 +57,17 @@ function getCity (city) {
 
                             cityEl.appendChild(cityUvi);
 
-                            // if (uviIndex >= 0 ||  uviIndex <= 2){
-                            //     $(uviIndex).addClass("uvi-green");
-                            // } else if (uviIndex >= 3 || uviIndex <= 5) {
-                            //     $(uviIndex).addClass("uvi-yellow");
-                            
+                            if (uviIndex >= 0 && uviIndex <= 2){
+                                $(cityUvi).addClass("uvi-green");
+                            } else if (uviIndex >= 3 && uviIndex <= 5) {
+                                $(cityUvi).addClass("uvi-yellow");
+                            } else if ( uviIndex >= 6 && uviIndex <= 7) {
+                                $(cityUvi).addClass("uvi-orange");
+                            } else if (uviIndex >= 8 && uviIndex <= 10) {
+                                $(cityUvi).addClass("uvi-red");
+                            } else {
+                                $(cityUvi).addClass("uvi-purple");
+                            }
                     });
                 }
 
