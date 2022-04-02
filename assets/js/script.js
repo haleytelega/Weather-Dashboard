@@ -83,7 +83,7 @@ function getCity (city) {
 
                 var tempOne = document.createElement("p");
                 tempOne.textContent = "Temp: " + oneTemp;
-                oneEl.append(oneTemp);
+                oneEl.appendChild(tempOne);
 
                 var windOne = document.createElement("p");
                 windOne.textContent = "Wind: " + oneWind;
@@ -216,6 +216,12 @@ function getCity (city) {
 userFormEl.addEventListener("submit", function(e) {
     e.preventDefault();
     var inputEl = document.getElementById("city").value;
-    console.log(inputEl);
     getCity(inputEl);
+
+    localStorage.setItem("city:", inputEl);
+
+    var citySearch = localStorage.getItem(inputEl);
+    console.log(citySearch);
 });
+
+
