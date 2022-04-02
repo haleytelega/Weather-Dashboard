@@ -6,6 +6,7 @@ var dayTwoEl = document.querySelector("#day2");
 var dayThreeEl = document.querySelector("#day3");
 var dayFourEl = document.querySelector("#day4");
 var dayFiveEl = document.querySelector("#day5");
+var cityIcon = document.querySelector(".weather-icon");
 
 var apiKey = "fbd00966461c8849ae90f0d8b2f1332f";
 
@@ -20,6 +21,13 @@ function getCity (city) {
                 var cityTemp = data.main.temp;
                 var cityHumitity = data.main.humidity;
                 var cityWind = data.wind.speed;
+                var icon = data.weather[0].icon;
+                cityIcon.setAttribute = ("src", "http://openweathermap.org/img/wn/" + icon + "@2x.png");
+                console.log(icon);
+
+                var currentIcon = document.createElement("img");
+                currentIcon.innerHTML = icon;
+                cityEl.appendChild(currentIcon);
 
                 var cityTempEl = document.createElement("p");
                 cityTempEl.textContent = "Tempature: " + cityTemp + "°C";
@@ -41,12 +49,17 @@ function getCity (city) {
                 fetch(uviUrl).then(function(response) {
                     if (response.ok) {
                         response.json().then(function(data){
-                            var uvi = data.current.uvi;
+                            var uviIndex = data.current.uvi;
                             var cityUvi = document.createElement("p");
-                            cityUvi.textContent = "UV: " + uvi;
+                            cityUvi.textContent = "UV: " + uviIndex;
 
                             cityEl.appendChild(cityUvi);
 
+                            // if (uviIndex >= 0 ||  uviIndex <= 2){
+                            //     $(uviIndex).addClass("uvi-green");
+                            // } else if (uviIndex >= 3 || uviIndex <= 5) {
+                            //     $(uviIndex).addClass("uvi-yellow");
+                            
                     });
                 }
 
@@ -164,6 +177,7 @@ function getCity (city) {
     var fourDate = moment().add(4, 'd').format("M/D/YYYY");
 
     var fiveDate = moment().add(5, 'd').format("M/D/YYYY");
+    
 
     cityContainerEl.appendChild(cityEl);
 

@@ -53,3 +53,11 @@ h1 {
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
 }
+
+.uvi-green {
+    background-color: green;
+}
+
+.uvi-yellow {
+    background-color: yellow;
+}
