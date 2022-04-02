@@ -155,21 +155,36 @@ function getCity (city) {
     console.log(getCurrentDate);
     cityContainerEl.textContent = city + "(" + getCurrentDate + ")";
 
+    var newDate = moment().add(1, 'd').format("M/D/YYYY");
+
+    var twoDate = moment().add(2, 'd').format("M/D/YYYY");
+
+    var threeDate = moment().add(3, 'd').format("M/D/YYYY");
+
+    var fourDate = moment().add(4, 'd').format("M/D/YYYY");
+
+    var fiveDate = moment().add(5, 'd').format("M/D/YYYY");
+
     cityContainerEl.appendChild(cityEl);
 
     var oneEl = document.createElement("a");
+    dayOneEl.textContent = newDate;
     dayOneEl.append(oneEl);
 
     var twoEl = document.createElement("a");
+    dayTwoEl.textContent = twoDate;
     dayTwoEl.appendChild(twoEl);
 
     var threeEl = document.createElement("a");
+    dayThreeEl.textContent = threeDate;
     dayThreeEl.appendChild(threeEl);
 
     var fourEl = document.createElement("a");
+    dayFourEl.textContent = fourDate;
     dayFourEl.appendChild(fourEl);
 
     var fiveEl = document.createElement("a");
+    dayFiveEl.textContent = fiveDate;
     dayFiveEl.appendChild(fiveEl);
     } 
     });
