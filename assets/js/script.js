@@ -7,6 +7,7 @@ var dayThreeEl = document.querySelector("#day3");
 var dayFourEl = document.querySelector("#day4");
 var dayFiveEl = document.querySelector("#day5");
 var cityIcon = document.querySelector(".weather-icon");
+var searchedCities = document.querySelector("#searched-cities")
 
 var apiKey = "fbd00966461c8849ae90f0d8b2f1332f";
 
@@ -22,13 +23,13 @@ function getCity (city) {
                 var cityHumitity = data.main.humidity;
                 var cityWind = data.wind.speed;
                 var icon = data.weather[0].icon;
-                cityIcon.setAttribute = ("src", "https://openweathermap.org/img/wn/" + icon + "@2x.png");
+                // cityIcon.setAttribute = ("src", "https://openweathermap.org/img/wn/" + icon + "@2x.png");
                 console.log(icon);
 
 
                 var currentIcon = document.getElementById('city-container');
                 var imgEl = document.createElement('img');
-                imgEl.src = `<img src="https://openweathermap.org/img/wn/${icon}@2x.png">`;
+                imgEl.src = src="https://openweathermap.org/img/wn/" + icon + "@2x.png";
                 currentIcon.append(imgEl);
 
                 var cityTempEl = document.createElement("p");
@@ -75,7 +76,6 @@ function getCity (city) {
             fetch(weekUrl).then(function(response) {
             if(response.ok) {
             response.json().then(function(data) {
-            console.log(data);
                 //day 1
                 var oneTemp = data.list[0].main.temp;
                 var oneWind = data.list[0].wind.speed;
@@ -171,7 +171,7 @@ function getCity (city) {
     cityContainerEl.textContent = "";
 
     var cityEl = document.createElement("a");
-    
+
     var getCurrentDate = moment().format("M/D/YYYY");
     console.log(getCurrentDate);
     cityContainerEl.textContent = city + "(" + getCurrentDate + ")";
@@ -185,9 +185,16 @@ function getCity (city) {
     var fourDate = moment().add(4, 'd').format("M/D/YYYY");
 
     var fiveDate = moment().add(5, 'd').format("M/D/YYYY");
-    
+
+    var cities = document.createElement("p");
+    cities.textContent = city;
+    searchedCities.appendChild(cities);
+
+
+    searchedCities.appendChild(cityEl);
 
     cityContainerEl.appendChild(cityEl);
+
 
     var oneEl = document.createElement("a");
     dayOneEl.textContent = newDate;
@@ -209,6 +216,7 @@ function getCity (city) {
     dayFiveEl.textContent = fiveDate;
     dayFiveEl.appendChild(fiveEl);
     } 
+
     });
 }
 
@@ -219,9 +227,7 @@ userFormEl.addEventListener("submit", function(e) {
     getCity(inputEl);
 
     localStorage.setItem("city:", inputEl);
-
-    var citySearch = localStorage.getItem(inputEl);
-    console.log(citySearch);
 });
 
 
+localStorage.getItem(inputEl);
