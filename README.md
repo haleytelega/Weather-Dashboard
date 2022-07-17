@@ -19,7 +19,7 @@
   What are the steps required to install your project? Please go here: https://haleytelega.github.io/Weather-Dashboard/
 
   ## Usage
-  Provide instructions and examples for use: Search for your city weather
+  Provide instructions and examples for use: Search for your cities weather
 
   ## Contributing
   List your collaborators: N/A
