@@ -1,22 +1,43 @@
-# Weather-Dashboard
 
-GIVEN a weather dashboard with form inputs
+  ![GitHub license](https://img.shields.io/badge/license-None-blue.svg)
+  # Weather Dashboard
 
-1. WHEN I search for a city
-THEN I am presented with current and future conditions for that city and that city is added to the search history
+  ## Description
+  Provide a short description explaining the what, why, and how of your project. Use the following questions as a guide:
+  What was your motivation? Create a website to retrieve daily and weekly weather for your city
+  Why did you build this project? Create me own weather dashboard
+  What problem does it solve? n/a
+  What did you learn? HTML, CSS, Third-party API
 
-2. WHEN I view current weather conditions for that city
-THEN I am presented with the city name, the date, an icon representation of weather conditions, the temperature, the humidity, the wind speed, and the UV index
+  ## Table of Contents
+- [Installation](#installation)
+- [Usage](#usage)
+- [Contributing](#contributing)
+- [License](#license)
 
-3. WHEN I view the UV index
-THEN I am presented with a color that indicates whether the conditions are favorable, moderate, or severe
+  ## Installation
+  What are the steps required to install your project? Please go here: https://haleytelega.github.io/Weather-Dashboard/
 
-4. WHEN I view future weather conditions for that city
-THEN I am presented with a 5-day forecast that displays the date, an icon representation of weather conditions, the temperature, the wind speed, and the humidity
+  ## Usage
+  Provide instructions and examples for use: Search for your city weather
 
-5. WHEN I click on a city in the search history
-THEN I am again presented with current and future conditions for that city
+  ## Contributing
+  List your collaborators: N/A
 
-Here is a mockup of what is should look like:
+  
+  ## License
+  License used: None 
+     
+
+  ## Tests
+  n/a
+
+  ## Questions
+  GitHub Username: haleytelega
+  GitHub Profile: https://github.com/haleytelega/Weather-Dashboard
+  Please feel free to reach out to me at: haleytelega@outlook.com
+
+
+Mockup:
 
 ![mockup](https://user-images.githubusercontent.com/98554034/161446364-85aa9bdc-6b93-41c4-9fa5-d9f9942e3477.png)
