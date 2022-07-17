@@ -38,6 +38,3 @@
   Please feel free to reach out to me at: haleytelega@outlook.com
 
 
-Mockup:
-
-![mockup](https://user-images.githubusercontent.com/98554034/161446364-85aa9bdc-6b93-41c4-9fa5-d9f9942e3477.png)
